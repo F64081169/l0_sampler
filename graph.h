@@ -10,7 +10,7 @@ public:
     deque<deque<int> > G;
     graph(int vertexNum);
     ~graph();
-    void print_graph(int vertexNum);
+    void print_graph(int vertexNum,int k);
     void stream_edges(int vertexNum);
 };
 

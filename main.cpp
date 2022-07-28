@@ -12,7 +12,7 @@ int main(){
         i++;
     }
     cout << endl;
-    G.print_graph(vertexNum);
+    G.print_graph(vertexNum,k);
 
     return 0;
 }

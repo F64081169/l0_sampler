@@ -1,7 +1,9 @@
 #include "graph.h"
 
-void graph::print_graph(int vertexNum){
+void graph::print_graph(int vertexNum,int k){
+    cout << "k = " << k << endl;
     for(int i = 0;i<vertexNum;i++){
+        cout << i << " : " ;
         for(int j = 0;j<G[i].size();j++){
             cout << G[i][j] << ' ';
         }
@@ -17,9 +19,8 @@ void graph::print_graph(int vertexNum){
 void graph::stream_edges(int vertexNum){
     x = rand()%vertexNum;
     y = rand()%vertexNum;
-    cout << x << ' ' << y <<endl;
-     G[x].push_back(y);
-     G[y].push_back(x);
+    G[x].push_back(y);
+    G[y].push_back(x);
 }
 
 graph::graph(int vertexNum){
