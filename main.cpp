@@ -26,7 +26,7 @@ void Report(int sign_no){
 }
 
 void print_graph(int vertexNum,int k){
-    cout << "k = " << k << endl;
+    cout << "\n Current graph with k = " << k << endl;
     for(int i = 0;i<vertexNum;i++){
         cout << i << " : " ;
         for(int j = 0;j<G[i].size();j++){
