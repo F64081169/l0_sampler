@@ -10,8 +10,9 @@ using namespace std;
 
 /* 2D deque undirected graph G */
 deque<deque<int> > G;
-int vertexNum,k;
+int vertexNum,edges,k;
 int x,y;
+clock_t start_time,finish_time;
 void Report(int);
 void print_graph(int,int);
 void stream_edges(int);

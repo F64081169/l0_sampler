@@ -1,21 +1,26 @@
 #include "main.h"
 
-
 int main(){
-
     srand(time(NULL));
-    cout << "Please enter the number of nodes and interger k.\n";
-    cin >> vertexNum >> k ;
+    cout << "Please enter the number of nodes, edges and interger k.\n";
+    cin >> vertexNum >> edges >> k;
     for(int i = 0;i<vertexNum;i++){
         G.push_back(deque<int>{});
     }
     signal(SIGTSTP, Report);
-
+     
     int i = 0;
-    while(1){
+    start_time = clock();
+    while(i<edges){
         stream_edges(vertexNum);
+        i++;
     }
-
+    finish_time = clock();
+    // Final result
+    cout << "-----Final result-----";
+    print_graph(vertexNum,k);
+    cout << "The answer is \"YES\"" << endl;
+    cout << "Total time : "<< double(finish_time-start_time)/CLOCKS_PER_SEC << endl;
     return 0;
 }
 
@@ -34,6 +39,7 @@ void print_graph(int vertexNum,int k){
         }
         cout << endl;
     }
+    
 }
 
 void stream_edges(int vertexNum){

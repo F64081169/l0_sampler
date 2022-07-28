@@ -1,7 +1,6 @@
-make --dry-run --keep-going --print-directory
+make --dry-run --always-make --keep-going --print-directory
 make: Entering directory '/home/user/Desktop/l0_sampler'
 g++ -g -Wall -ansi -c main.cpp
-g++    -c -o graph.o graph.cpp
-g++ -o l0Sampler main.o graph.o
+g++ -o l0Sampler main.o
 make: Leaving directory '/home/user/Desktop/l0_sampler'
  
