@@ -1,5 +1,4 @@
 #include "main.h"
-
 int main(){
     fout.open("StreamingEdges.txt",ios::out); 
     int i = 0;
@@ -9,6 +8,7 @@ int main(){
     vector<int> nodes; // nodes
     for(int i = 0;i<vertexNum;i++){
         nodes.push_back(i);
+        G.push_back(deque<int>{});
     }
     passes = 160*pow(k,2)*log10(vertexNum);
     while(i<edges){
@@ -17,23 +17,8 @@ int main(){
     }
     fout.close();
     fin.open("StreamingEdges.txt",ios::in);
-    i = 0;
     start_time = clock();
-    while(i<passes){
-        // generate several random vertices in prob.(k/n) with bad implement
-        random_shuffle(nodes.begin(),nodes.end());
-        while(!fin.eof()){ 
-            fin >> sign >> x >> y;
-            int cnt = 0;
-            int l0arr[k/vertexNum][int(log2(vertexNum))];
-            while(cnt < int(log2(vertexNum))){
-                // l0sampler to construct spanning trees
-                
-                cnt++;
-            }
-        }
-        i++;
-    }
+    sketch(&nodes);
     //k-vertex connectivity algorithm
     post_processing(k);
     finish_time = clock();
@@ -49,6 +34,27 @@ int main(){
     return 0;
 }
 
+
+
+
+void sketch(vector<int>* nodes){
+    int i = 0;
+    while(i<passes){
+        // generate several random vertices in prob.(k/n) with bad implement
+        random_shuffle(nodes->begin(),nodes->end());
+        while(!fin.eof()){ 
+            fin >> sign >> x >> y;
+            int cnt = 0;
+            int l0arr[k/vertexNum][int(log2(vertexNum))];
+            while(cnt < int(log2(vertexNum))){
+                // l0sampler to construct spanning trees
+                
+                cnt++;
+            }
+        }
+        i++;
+    }
+}
 void generate_edges(int vertexNum){
     x = rand()%vertexNum;
     y = rand()%vertexNum;
