@@ -2,19 +2,21 @@
 
 int main(){
     srand(time(NULL));
-    cout << "Please enter the number of nodes, edges and interger k.\n";
-    cin >> vertexNum >> edges >> k;
+    cout << "Please enter the number of n nodes, m edges, p passes and an interger k.\n";
+    cin >> vertexNum >> edges >> passes >> k;
     for(int i = 0;i<vertexNum;i++){
         G.push_back(deque<int>{});
     }
     signal(SIGTSTP, Report);
      
     int i = 0;
+    fout.open("StreamingEdges.txt",ios::out) ; 
     start_time = clock();
     while(i<edges){
         stream_edges(vertexNum);
         i++;
     }
+    fout.close();
     finish_time = clock();
     // Final result
     cout << "-----Final result-----";
@@ -43,9 +45,11 @@ void print_graph(int vertexNum,int k){
 }
 
 void stream_edges(int vertexNum){
+    
     x = rand()%vertexNum;
     y = rand()%vertexNum;
     int sign = rand()%2; 
+    fout << sign <<' '<< x << ' ' << y << endl;
     deque<int>::iterator itx = find_if(G[x].begin(), G[x].end(), bind2nd(equal_to<int>(), y));
     deque<int>::iterator ity = find_if(G[y].begin(), G[y].end(), bind2nd(equal_to<int>(), x));
     if(x!=y){
