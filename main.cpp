@@ -1,15 +1,16 @@
 #include "main.h"
 
 int main(){
+    fout.open("StreamingEdges.txt",ios::out); 
+    int i = 0;
     srand(time(NULL));
     cout << "Please enter the number of n nodes, m edges, and an interger k.\n";
     cin >> vertexNum >> edges  >> k;
-    passes = 160*pow(k,2)*log10(vertexNum);
+    vector<int> nodes; // nodes
     for(int i = 0;i<vertexNum;i++){
-        G.push_back(deque<int>{});
+        nodes.push_back(i);
     }
-    int i = 0;
-    fout.open("StreamingEdges.txt",ios::out); 
+    passes = 160*pow(k,2)*log10(vertexNum);
     while(i<edges){
         generate_edges(vertexNum);
         i++;
@@ -19,7 +20,8 @@ int main(){
     i = 0;
     start_time = clock();
     while(i<passes){
-        // generate several random vertices in prob.(k/n)
+        // generate several random vertices in prob.(k/n) with bad implement
+        random_shuffle(nodes.begin(),nodes.end());
         while(!fin.eof()){ 
             fin >> sign >> x >> y;
             // l0sampler to construct spanning trees
@@ -38,24 +40,6 @@ int main(){
     return 0;
 }
 
-// void stream_edges(int sign,int x,int y){
-//     deque<int>::iterator itx = find_if(G[x].begin(), G[x].end(), bind2nd(equal_to<int>(), y));
-//     deque<int>::iterator ity = find_if(G[y].begin(), G[y].end(), bind2nd(equal_to<int>(), x));
-//     if(x!=y){
-//         if(sign==1){/* '+' */
-//             if((itx == G[x].end()) && (ity == G[y].end())){
-//                 G[x].push_back(y);
-//                 G[y].push_back(x);
-//             }
-//         }else{/* '-' */
-//             if((itx != G[x].end()) && (ity != G[y].end())){
-//                 G[x].erase(find(G[x].begin(),G[x].end(),y));
-//                 G[y].erase(find(G[y].begin(),G[y].end(),x));
-//             }
-//         }
-//     }
-// }
-
 void generate_edges(int vertexNum){
     x = rand()%vertexNum;
     y = rand()%vertexNum;
@@ -64,5 +48,6 @@ void generate_edges(int vertexNum){
 }
 
 void post_processing(int k){
+    //k-vertex connectivity algorithm
     cout<<k;
 }
