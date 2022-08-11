@@ -62,3 +62,7 @@ void generate_edges(int vertexNum){
     int sign = rand()%2; 
     fout << sign <<' '<< x << ' ' << y << endl;   
 }
+
+void post_processing(int k){
+    cout<<k;
+}

@@ -8,6 +8,7 @@ using namespace std;
 #include <deque>
 #include <fstream>
 #include <math.h>
+#include "murmurhash3.h"
 
 /* 2D deque undirected graph G */
 deque<deque<int> > G;
@@ -22,11 +23,11 @@ void post_processing(int);
 
 void print_graph(int vertexNum,int k){
     cout << "\nn = " << vertexNum << " ,m = " << edges << " ,p = " << passes << " ,k = " << k <<  endl;
-    for(int i = 0;i<vertexNum;i++){
-        cout << i << " : " ;
-        for(int j = 0;j<G[i].size();j++){
-            cout << G[i][j] << ' ';
-        }
-        cout << endl;
-    }   
+    // for(int i = 0;i<vertexNum;i++){
+    //     cout << i << " : " ;
+    //     for(int j = 0;j<G[i].size();j++){
+    //         cout << G[i][j] << ' ';
+    //     }
+    //     cout << endl;
+    // }   
 }

@@ -5,8 +5,9 @@ make all --print-data-base --no-builtin-variables --no-builtin-rules --question
 # License GPLv3+: GNU GPL version 3 or later <http://gnu.org/licenses/gpl.html>
 # This is free software: you are free to change and redistribute it.
 # There is NO WARRANTY, to the extent permitted by law.
+ 
 
-# Make data base, printed on Thu Aug 11 13:08:50 2022
+# Make data base, printed on Thu Aug 11 15:16:52 2022
 
 # Variables
 
@@ -259,9 +260,9 @@ SNAP_LIBRARY_PATH = /var/lib/snapd/lib/gl:/var/lib/snapd/lib/gl32:/var/lib/snapd
 
 # Directories
 
-# . (device 66309, inode 4326591): 10 files, no impossibilities.
+# . (device 66309, inode 4326591): 13 files, no impossibilities.
 
-# 10 files, no impossibilities in 1 directories.
+# 13 files, no impossibilities in 1 directories.
 
 # Implicit Rules
 
@@ -271,8 +272,16 @@ SNAP_LIBRARY_PATH = /var/lib/snapd/lib/gl:/var/lib/snapd/lib/gl32:/var/lib/snapd
 
 # Not a target:
 Makefile:
+ 
 #  Implicit rule search has been done.
-#  Last modified 2022-07-28 13:38:19.921364511
+#  Last modified 2022-08-11 15:15:35.183187634
+#  File has been updated.
+#  Successfully updated.
+
+# Not a target:
+murmurhash3.cpp:
+#  Implicit rule search has been done.
+#  Last modified 2022-08-11 15:10:48.842755737
 #  File has been updated.
 #  Successfully updated.
 
@@ -280,16 +289,42 @@ clean:
 #  Implicit rule search has not been done.
 #  Modification time never checked.
 #  File has not been updated.
-#  recipe to execute (from 'Makefile', line 9):
+#  recipe to execute (from 'Makefile', line 11):
 	rm  *.o l0Sampler
 
 # Not a target:
 main.h:
 #  Implicit rule search has been done.
-#  Last modified 2022-08-10 13:49:41.162767527
- 
+#  Last modified 2022-08-11 15:11:32.820084396
 #  File has been updated.
 #  Successfully updated.
+
+hash.o: murmurhash3.cpp murmurhash3.h
+#  Implicit rule search has not been done.
+#  Implicit/static pattern stem: ''
+#  File does not exist.
+#  File has been updated.
+#  Needs to be updated (-q is set).
+# automatic
+# @ := hash.o
+# automatic
+# * := 
+# automatic
+# < := murmurhash3.cpp
+# automatic
+# + := murmurhash3.cpp murmurhash3.h
+# automatic
+# % := 
+# automatic
+# ^ := murmurhash3.cpp murmurhash3.h
+# automatic
+# ? := murmurhash3.cpp murmurhash3.h
+# automatic
+# | := 
+# variable set hash-table stats:
+# Load=8/32=25%, Rehash=0, Collisions=2/13=15%
+#  recipe to execute (from 'Makefile', line 9):
+	$(CC) $(CFLAGS) -c murmurhash3.cpp
 
 # Not a target:
 .DEFAULT:
@@ -297,7 +332,14 @@ main.h:
 #  Modification time never checked.
 #  File has not been updated.
 
-all: main.o
+# Not a target:
+murmurhash3.h:
+#  Implicit rule search has been done.
+#  Last modified 2022-08-11 15:09:42.004707137
+#  File has been updated.
+#  Successfully updated.
+
+all: main.o hash.o
 #  Command line target.
 #  Implicit rule search has not been done.
 #  File does not exist.
@@ -306,39 +348,20 @@ all: main.o
 # variable set hash-table stats:
 # Load=0/32=0%, Rehash=0, Collisions=0/5=0%
 #  recipe to execute (from 'Makefile', line 5):
-	$(CC) -o l0Sampler main.o
+	$(CC) -o l0Sampler main.o murmurhash3.o
 
 # Not a target:
 main.cpp:
 #  Implicit rule search has been done.
-#  Last modified 2022-07-28 14:32:40.708674033
+#  Last modified 2022-08-11 15:11:07.811330595
 #  File has been updated.
 #  Successfully updated.
 
-main.o: main.cpp main.h
+main.o: main.cpp main.h murmurhash3.h
 #  Implicit rule search has not been done.
-#  Implicit/static pattern stem: ''
-#  Last modified 2022-07-28 14:32:43.044681746
+#  Last modified 2022-08-11 15:15:54.271734179
 #  File has been updated.
-#  Needs to be updated (-q is set).
-# automatic
-# @ := main.o
-# automatic
-# * := 
-# automatic
-# < := main.cpp
-# automatic
-# + := main.cpp main.h
-# automatic
-# % := 
-# automatic
-# ^ := main.cpp main.h
-# automatic
-# ? := main.h
-# automatic
-# | := 
-# variable set hash-table stats:
-# Load=8/32=25%, Rehash=0, Collisions=2/13=15%
+#  Successfully updated.
 #  recipe to execute (from 'Makefile', line 7):
 	$(CC) $(CFLAGS) -c main.cpp
 
@@ -349,19 +372,19 @@ main.o: main.cpp main.h
 #  File has not been updated.
 
 # files hash-table stats:
-# Load=8/1024=1%, Rehash=0, Collisions=0/24=0%
+# Load=11/1024=1%, Rehash=0, Collisions=0/32=0%
 # VPATH Search Paths
 
 # No 'vpath' search paths.
 
 # No general ('VPATH' variable) search path.
 
-# strcache buffers: 1 (0) / strings = 16 / storage = 131 B / avg = 8 B
-# current buf: size = 8162 B / used = 131 B / count = 16 / avg = 8 B
+# strcache buffers: 1 (0) / strings = 20 / storage = 191 B / avg = 9 B
+# current buf: size = 8162 B / used = 191 B / count = 20 / avg = 9 B
 
-# strcache performance: lookups = 29 / hit rate = 44%
+# strcache performance: lookups = 38 / hit rate = 47%
 # hash-table stats:
-# Load=16/8192=0%, Rehash=0, Collisions=0/29=0%
-# Finished Make data base on Thu Aug 11 13:08:50 2022
+# Load=20/8192=0%, Rehash=0, Collisions=0/38=0%
+# Finished Make data base on Thu Aug 11 15:16:52 2022
 
  
