@@ -7,16 +7,25 @@ int main(){
     for(int i = 0;i<vertexNum;i++){
         G.push_back(deque<int>{});
     }
-    signal(SIGTSTP, Report);
      
     int i = 0;
-    fout.open("StreamingEdges.txt",ios::out) ; 
+    fout.open("StreamingEdges.txt",ios::out); 
     start_time = clock();
     while(i<edges){
-        stream_edges(vertexNum);
+        generate_edges(vertexNum);
         i++;
     }
     fout.close();
+    fin.open("StreamingEdges.txt",ios::in);
+    i = 0;
+    while(i<passes-1){
+        while(!fin.eof()){
+            fin >> sign >> x >> y;
+            stream_edges(sign,x,y);
+        }
+        i++;
+    }
+    fin.close();
     finish_time = clock();
     // Final result
     cout << "-----Final result-----";
@@ -26,14 +35,9 @@ int main(){
     return 0;
 }
 
-void Report(int sign_no){
-    if(sign_no == SIGTSTP){  
-        print_graph(vertexNum,k);
-    }  
-}
 
 void print_graph(int vertexNum,int k){
-    cout << "\n Current graph with k = " << k << endl;
+    cout << "\nn = " << vertexNum << " ,m = " << edges << " ,p = " << passes << " ,k = " << k <<  endl;
     for(int i = 0;i<vertexNum;i++){
         cout << i << " : " ;
         for(int j = 0;j<G[i].size();j++){
@@ -43,13 +47,7 @@ void print_graph(int vertexNum,int k){
     }
     
 }
-
-void stream_edges(int vertexNum){
-    
-    x = rand()%vertexNum;
-    y = rand()%vertexNum;
-    int sign = rand()%2; 
-    fout << sign <<' '<< x << ' ' << y << endl;
+void stream_edges(int sign,int x,int y){
     deque<int>::iterator itx = find_if(G[x].begin(), G[x].end(), bind2nd(equal_to<int>(), y));
     deque<int>::iterator ity = find_if(G[y].begin(), G[y].end(), bind2nd(equal_to<int>(), x));
     if(x!=y){
@@ -65,4 +63,12 @@ void stream_edges(int vertexNum){
             }
         }
     }
+}
+void generate_edges(int vertexNum){
+    x = rand()%vertexNum;
+    y = rand()%vertexNum;
+    int sign = rand()%2; 
+    fout << sign <<' '<< x << ' ' << y << endl;
+    stream_edges(sign,x,y);
+    
 }
