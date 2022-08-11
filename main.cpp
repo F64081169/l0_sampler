@@ -24,7 +24,13 @@ int main(){
         random_shuffle(nodes.begin(),nodes.end());
         while(!fin.eof()){ 
             fin >> sign >> x >> y;
-            // l0sampler to construct spanning trees
+            int cnt = 0;
+            int l0arr[k/vertexNum][int(log2(vertexNum))];
+            while(cnt < int(log2(vertexNum))){
+                // l0sampler to construct spanning trees
+                
+                cnt++;
+            }
         }
         i++;
     }
@@ -35,7 +41,10 @@ int main(){
     // Final result
     cout << "-----Final result-----";
     print_graph(vertexNum,k);
-    cout << "The answer is \"YES\"" << endl;
+    if(answer)
+        cout << "The answer is \"YES\"" << endl;
+    else 
+        cout << "The answer is \"NO\"" << endl;
     cout << "Total time : "<< double(finish_time-start_time)/CLOCKS_PER_SEC << endl;
     return 0;
 }

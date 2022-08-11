@@ -15,6 +15,7 @@ using namespace std;
 // deque<deque<int> > G;
 int vertexNum,edges,passes,k;
 int sign,x,y;
+bool answer;
 clock_t start_time,finish_time;
 fstream fin,fout;
 void print_graph(int,int);
